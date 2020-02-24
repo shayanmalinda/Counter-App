@@ -20,14 +20,14 @@ class Counter extends Component {
     );
   }
 
-  constructor() {
-    super();
-    this.handleIncrement = this.handleIncrement.bind(this);
-  }
+  // constructor() {
+  //   super();
+  //   this.handleIncrement = this.handleIncrement.bind(this);
+  // }
 
-  handleIncrement() {
-    this.state.count += 1;
-  }
+  handleIncrement = () => {
+    console.log(this);
+  };
 
   getBadgeClass() {
     if (this.state.count === 0) {
