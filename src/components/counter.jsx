@@ -2,7 +2,7 @@ import React, { Component } from "react";
 
 class Counter extends Component {
   state = {
-    value: this.props.value,
+    value: this.props.counter.value,
     tags: []
   };
 
@@ -11,13 +11,13 @@ class Counter extends Component {
       <div>
         <span className={this.getBadgeClass()}> {this.formatCount()} </span>
         <button
-          onClick={this.handleIncrement}
+          onClick={() => this.props.onIncrement(this.props.counter)}
           className="btn btn-secondary btn-sm"
         >
           Increment
         </button>
         <button
-          onClick={() => this.props.onDelete(this.props.id)}
+          onClick={() => this.props.onDelete(this.props.counter.id)}
           className="btn btn-danger m-2 btn-sm"
         >
           Delete
@@ -26,12 +26,8 @@ class Counter extends Component {
     );
   }
 
-  handleIncrement = () => {
-    this.setState({ value: this.state.value + 1 });
-  };
-
   getBadgeClass() {
-    if (this.state.value === 0) {
+    if (this.props.counter.value === 0) {
       return "badge badge-warning m-2";
     } else {
       return "badge badge-primary m-2";
@@ -39,10 +35,10 @@ class Counter extends Component {
   }
 
   formatCount() {
-    if (this.state.value === 0) {
+    if (this.props.counter.value === 0) {
       return "zero";
     } else {
-      return this.state.value;
+      return this.props.counter.value;
     }
   }
 }
